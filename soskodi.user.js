@@ -123,7 +123,7 @@
         playButton.appendTo(spanToAddStuff);
 
         ipPortButton.click(function() {setupIpPort("");});
-        ipPortButton.click(play);
+        playButton.click(play);
     }
 
     setupUI();
