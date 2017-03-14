@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SosacToKodi
 // @namespace    kodisosac
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
 // @author       long
 // @match        http://movies.sosac.tv/cs/player/*
