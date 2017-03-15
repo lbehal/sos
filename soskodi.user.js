@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SosacToKodi
 // @namespace    kodisosac
-// @version      0.4
+// @version      0.5
 // @description  try to take over the world!
 // @author       long
 // @match        http://movies.sosac.tv/cs/player/*
@@ -196,14 +196,20 @@
             },
             onload: function(response) {
                 try {
-                    var result = JSON.parse(response.responseText);
-                    console.log(result);
+					console.log(response);
+                    var result = JSON.parse(response.responseText);                    
                 }
                 catch(err) {
-                    console.log(err);
-                   
-                }
-            }
+                    console.log(err);   
+					alert("nastala chyba");
+                }				
+            },
+			ontimeout: function(errror){
+				alert("Nefunkční spojení ke Kodi. Máte zaplé Kodi a povolené vzdálené ovládání?");
+			},
+			onerror: function(error){
+				alert("Nefunkční spojení ke Kodi. Máte zaplé Kodi a povolené vzdálené ovládání?");
+			}
         });
     }
 
