@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SosacToKodi
 // @namespace    kodisosac
-// @version      0.2
+// @version      0.3
 // @description  try to take over the world!
 // @author       long
 // @match        http://movies.sosac.tv/cs/player/*
@@ -33,6 +33,7 @@
     function extractUrl(){
         var urls=[];
         const regex = /www\.streamuj\.tv\/video\/(\w+)(\?)?/g;
+		var title = $("h3 > strong").text();
         $("iframe[src^='http://www.streamuj.tv/video/']").each(function() {
             var src = $(this).attr("src");
             var m = regex.exec(src);
@@ -43,7 +44,7 @@
                 var url = pluginUrl('plugin.video.sosac.ph', {
                     play: id,
                     cp: 'sosac.ph',
-                    title: 'title'
+                    title: title
                 });
                 console.log(url);
                 urls.push(url);
@@ -59,6 +60,7 @@
         {
             ipport = prompt("Please enter kodis ip:port", "127.0.0.1:8080");
             GM_setValue("sos_ipport", ipport);
+            return ipport;
         }
     }
 
@@ -68,7 +70,7 @@
         console.log(ipport);
         if(!ipport || 0 === ipport.length)
         {
-            setupIpPort(ipport);
+            ipport = setupIpPort(ipport);
         }
         return ipport;
     }
