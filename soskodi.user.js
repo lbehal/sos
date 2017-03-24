@@ -57,7 +57,7 @@
 
     function setupIpPort(ipport)
     {
-        console.log("testing ipport");
+        //console.log("testing ipport");
         while(!/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\:[0-9]{1,4}$/.test(ipport))
         {
             ipport = prompt("Please enter kodis ip:port", "127.0.0.1:8080");
