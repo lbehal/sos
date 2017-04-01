@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         SosacToKodi
 // @namespace    kodisosac
-// @version      0.7
+// @version      0.8
 // @description  try to take over the world!
 // @author       long
-// @match        http://*.sosac.tv/cs/player/*
+// @match        http://movies.sosac.tv/cs/player/*
+// @match        http://tv.sosac.tv/cs/player/*
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @grant        GM_xmlhttpRequest
@@ -122,15 +123,19 @@
 
     function setupUI()
     {
-        var spanToAddStuff = $("span.additionald");
+        var h3 = $('div.detail h3');
+       
         var ipport = GM_getValue("sos_ipport", "");
+
+        var playDiv = $("<div></div>");
+        playDiv.appendTo(h3);
         var ipPortButton = $("<button type=\"button\">Kodi address:"+ipport+"</button>");
 
         var playButton = $("<button type=\"button\">Play in kodi</button>");
-        spanToAddStuff.append(" ");
-        ipPortButton.appendTo(spanToAddStuff);
-        spanToAddStuff.append(" ");
-        playButton.appendTo(spanToAddStuff);
+        //spanToAddStuff.append(" ");
+        ipPortButton.appendTo(playDiv);
+        playDiv.append(" ");
+        playButton.appendTo(playDiv);
 
         ipPortButton.click(function() {setupIpPort("");});
         playButton.click(play);
