@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         SosacToKodi
 // @namespace    kodisosac
-// @version      0.6
+// @version      0.7
 // @description  try to take over the world!
 // @author       long
-// @match        http://movies.sosac.tv/cs/player/*
+// @match        http://*.sosac.tv/cs/player/*
 // @grant        GM_setValue
 // @grant        GM_getValue
 // @grant        GM_xmlhttpRequest
