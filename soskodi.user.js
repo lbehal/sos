@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SosacToKodi
 // @namespace    kodisosac
-// @version      0.8
+// @version      0.9
 // @description  try to take over the world!
 // @author       long
 // @match        http://movies.sosac.tv/cs/player/*
@@ -84,8 +84,39 @@
         //construct url for the RPC call
         url = encodeURIComponent(url);
         var json = "{ \"jsonrpc\": \"2.0\", \"method\": \"Player.Open\", \"params\": { \"item\": { \"file\": \""+url+"\" } }, \"id\": 1 }";
+        var activateJson = "{ \"jsonrpc\": \"2.0\", \"method\": \"Addons.ExecuteAddon\", \"params\": { \"addonid\":\"script.json-cec\",\"params\":{\"command\":\"activate\"}}, \"id\": 1 }";
+
         var rpcUrl = "http://"+ipport+"/jsonrpc?request="+json;
+        var activateUrl = "http://"+ipport+"/jsonrpc?request="+activateJson;
         console.log(rpcUrl);
+        
+        //activate source
+        GM_xmlhttpRequest({
+            method: "GET",
+            url: activateUrl,
+            headers: {
+                "User-Agent": "Mozilla/5.0",
+                "Accept": "application/json, text/javascript, */*; q=0.01"
+            },
+            onload: function(response) {
+                try {
+					console.log(response);
+                    var result = JSON.parse(response.responseText);                    
+                }
+                catch(err) {
+                    console.log(err);   
+					alert("nastala chyba");
+                }				
+            },
+			ontimeout: function(errror){
+				alert("Nefunkční spojení ke Kodi. Máte zaplé Kodi a povolené vzdálené ovládání?");
+			},
+			onerror: function(error){
+				alert("Nefunkční spojení ke Kodi. Máte zaplé Kodi a povolené vzdálené ovládání?");
+			}
+        });
+        
+        //play the movie
         GM_xmlhttpRequest({
             method: "GET",
             url: rpcUrl,
