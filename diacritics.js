@@ -106,4 +106,4 @@ var diacritics = function(){
     }
  
   return {removeDiacritics: removeDiacritics};
-    }();
+}();

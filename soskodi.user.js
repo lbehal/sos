@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         SosacToKodi
 // @namespace    kodisosac
-// @version      0.9
+// @version      0.10
 // @description  try to take over the world!
 // @author       long
 // @match        http://movies.sosac.tv/cs/player/*
@@ -109,10 +109,13 @@
                 }				
             },
 			ontimeout: function(errror){
-				alert("Nefunkční spojení ke Kodi. Máte zaplé Kodi a povolené vzdálené ovládání?");
+				alert("Nefunkční spojení ke Kodi. Máte zaplé Kodi a povolené vzdálené ovládání?.");
 			},
-			onerror: function(error){
-				alert("Nefunkční spojení ke Kodi. Máte zaplé Kodi a povolené vzdálené ovládání?");
+			onerror: function(error){				
+                if (window.confirm('Prosím nainstalujte do Kodi addon pro zapínání TV. OK vás odnaviguje na stranku addonu.')) 
+                {
+                    window.location.href='https://github.com/joshjowen/script.json-cec';
+                };
 			}
         });
         
